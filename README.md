@@ -26,27 +26,14 @@ This project analyzes product sales data for **Asces Sound**, a company selling 
 - Prepared clean dataset for SQL import
 
 ### 2.Data Analysis — MS SQL
-- Wrote SQL queries to explore revenue, profit, and sales trends
-- Segmented data by year, customer type, and country
-- Aggregated metrics for use in Power BI visuals
-
-### 3. Dashboard — Power BI
-Built an interactive dashboard featuring:
-- **Revenue by Date & Year** — monthly bar chart comparing 2022 vs 2023
-- **Top Countries by Revenue** — Canada, USA, France, Mexico, Germany
-- **Table Breakdown** — revenue and profit by customer type (Creator, Education, Enterprise, Government, Small Business)
-- **Discount Band Breakdown** — donut chart showing revenue distribution across discount tiers
-- **Product Navigation** — filter view by specific product category
-
-
-
-## Dashboard Preview
-
-<img width="757" height="458" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/6e1bbd60-1b0f-40ed-acc1-aea9919a2027" />
-
-
-# SQL Queries:
-
+- Joined `Product_data` and `product_sales` tables on `Product_ID`
+- Calculated **Revenue** (`Sale_Price × Units_Sold`) and **Total Cost** (`Cost_Price × Units_Sold`)
+- Extracted **Month** and **Year** from the date column for time-based analysis
+- Used a **CTE (Common Table Expression)** to build a clean base dataset with product, sales, and customer info
+- Joined with `discount_data` to calculate **discounted revenue** using the formula:
+  `Discounted Revenue = (1 - Discount% / 100) × Revenue`
+- Final dataset combined 3 tables: `product_sales`, `Product_data`, and `discount_data`
+**Queries:**
 ```sql
 SELECT * FROM discount_data;
 SELECT * FROM Product_data;
@@ -89,7 +76,18 @@ JOIN discount_data b
 ON a.Discount_Band=b.Discount_Band AND a.Month =b.Month;
 ```
 
-## Key Insights
+### 3. Dashboard — Power BI
+Built an interactive dashboard featuring:
+- **Revenue by Date & Year** — monthly bar chart comparing 2022 vs 2023
+- **Top Countries by Revenue** — Canada, USA, France, Mexico, Germany
+- **Table Breakdown** — revenue and profit by customer type (Creator, Education, Enterprise, Government, Small Business)
+- **Discount Band Breakdown** — donut chart showing revenue distribution across discount tiers
+- **Product Navigation** — filter view by specific product category
+** Dashboard Preview**
+
+<img width="757" height="458" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/6e1bbd60-1b0f-40ed-acc1-aea9919a2027" />
+
+ ## Key Insights
 
 - **2023 revenue outperformed 2022** across most months, with a strong peak mid-year
 - **Government** customers generated the highest revenue (~$6.28M in 2022)
