@@ -33,7 +33,7 @@ This project analyzes product sales data for **Asces Sound**, a company selling 
 - Joined with `discount_data` to calculate **discounted revenue** using the formula:
   `Discounted Revenue = (1 - Discount% / 100) × Revenue`
 - Final dataset combined 3 tables: `product_sales`, `Product_data`, and `discount_data`
-**Queries:**
+
 ```sql
 SELECT * FROM discount_data;
 SELECT * FROM Product_data;
